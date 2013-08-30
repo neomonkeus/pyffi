@@ -878,8 +878,30 @@ class SpellCheckMaterialEmissiveValue(pyffi.spells.nif.NifSpell):
 
 class SpellCheckPropertyValue(pyffi.spells.nif.NifSpell):
     
-    SPELLNAME = "check_property_value"
-
+    SPELLNAME = "check_property_value"  
+    
+    @classmethod
+    def toastentry(cls, toaster):
+         # if no argument given, do not apply spell
+        if not toaster.options.get("arg"):
+            print("No args were provided: -a blocktype attribute output_file")
+            return False
+        
+        args = toaster.options.get("arg")
+        print(args)
+        return False
+    
+        cls.output_dir = 'C:\\Users\\egemora\\Desktop'
+        cls.output_filename = '\\test'
+    
+        path = cls.output_dir + cls.output_filename + ".txt" 
+        cls.output_file = open(path, 'w+')
+        return True 
+                
+    @classmethod
+    def toastexit(cls, toaster):
+        cls.output_file.close()
+        
     def dataentry(self):
         self.check_property = False
         return True
@@ -899,7 +921,8 @@ class SpellCheckPropertyValue(pyffi.spells.nif.NifSpell):
         if isinstance(branch, NifFormat.NiTexturingProperty):
             # check value
             if (branch.has_bump_map_texture):
-                self.toaster.logger.warn(str(self.stream.name))
+                self.toaster.logger.warn(self.output_file)
+                self.output_file.write(str(self.stream.name))
                 self.check_property = True
             # stop recursion
             return False
