@@ -876,6 +876,38 @@ class SpellCheckMaterialEmissiveValue(pyffi.spells.nif.NifSpell):
             # keep recursing into children
             return True
 
+class SpellCheckPropertyValue(pyffi.spells.nif.NifSpell):
+    
+    SPELLNAME = "check_property_value"
+
+    def dataentry(self):
+        self.check_property = False
+        return True
+    
+    def datainspect(self):
+        # only run the spell if there are material property blocks
+        return self.inspectblocktype(NifFormat.NiTexturingProperty)
+
+    def branchinspect(self, branch):
+        # if we are done, don't recurse further
+        if self.check_property:
+            return False
+        # only inspect the NiAVObject branch, and properties
+        return isinstance(branch, (NifFormat.NiAVObject, NifFormat.NiTexturingProperty))
+    
+    def branchentry(self, branch):
+        if isinstance(branch, NifFormat.NiTexturingProperty):
+            # check value
+            if (branch.has_bump_map_texture):
+                self.toaster.logger.warn(str(self.stream.name))
+                self.check_property = True
+            # stop recursion
+            return False
+        else:
+            # keep recursing into children
+            return True
+    
+
 class SpellCheckTriangles(pyffi.spells.nif.NifSpell):
     """Base class for spells which need to check all triangles."""
 

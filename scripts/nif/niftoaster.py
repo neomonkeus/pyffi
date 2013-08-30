@@ -66,6 +66,7 @@ class NifToaster(pyffi.spells.nif.NifToaster):
         pyffi.spells.nif.check.SpellCheckCenterRadius,
         pyffi.spells.nif.check.SpellCheckConvexVerticesShape,
         pyffi.spells.nif.check.SpellCheckMopp,
+        pyffi.spells.nif.check.SpellCheckPropertyValue,
         pyffi.spells.nif.check.SpellCheckSkinCenterRadius,
         pyffi.spells.nif.check.SpellCheckTangentSpace,
         pyffi.spells.nif.check.SpellCheckTriStrip,
