@@ -882,20 +882,30 @@ class SpellCheckPropertyValue(pyffi.spells.nif.NifSpell):
     
     @classmethod
     def toastentry(cls, toaster):
-         # if no argument given, do not apply spell
+        # if no argument given, do not apply spell
         if not toaster.options.get("arg"):
-            print("No args were provided: -a blocktype attribute output_file")
+            toaster.logger.warn("No args were provided: -a blocktype attribute output_file")
+            return False
+                
+        arg = toaster.options.get("arg")
+        args = arg.split()
+        
+        if len(args) != 4:
+            toaster.logger.warn("Not enough arg supplied - \"block_type attribute value output_file\"")
+            return False
+
+        cls.block_type = getattr(NifFormat, args[0])
+        
+        try:    
+            attr = getattr(cls.block_type, args[1])
+            cls.attribute = args[1]
+        except:
+            toaster.logger.warn("Could not find the attribute: " + str(args[1]))
+            toaster.logger.warn("Please ensure that the value passed in is an attribute of this block")
             return False
         
-        args = toaster.options.get("arg")
-        print(args)
-        return False
-    
-        cls.output_dir = 'C:\\Users\\egemora\\Desktop'
-        cls.output_filename = '\\test'
-    
-        path = cls.output_dir + cls.output_filename + ".txt" 
-        cls.output_file = open(path, 'w+')
+        cls.value = args[2]
+        cls.output_file = open(args[3], 'w+')
         return True 
                 
     @classmethod
@@ -903,33 +913,30 @@ class SpellCheckPropertyValue(pyffi.spells.nif.NifSpell):
         cls.output_file.close()
         
     def dataentry(self):
-        self.check_property = False
+        self.found_property = False
         return True
     
     def datainspect(self):
         # only run the spell if there are material property blocks
-        return self.inspectblocktype(NifFormat.NiTexturingProperty)
+        return self.inspectblocktype(self.block_type)
 
     def branchinspect(self, branch):
         # if we are done, don't recurse further
-        if self.check_property:
+        if self.found_property:
             return False
         # only inspect the NiAVObject branch, and properties
-        return isinstance(branch, (NifFormat.NiAVObject, NifFormat.NiTexturingProperty))
+        return isinstance(branch, (NifFormat.NiAVObject, self.block_type))
     
     def branchentry(self, branch):
-        if isinstance(branch, NifFormat.NiTexturingProperty):
-            # check value
-            if (branch.has_bump_map_texture):
-                self.toaster.logger.warn(self.output_file)
+        if isinstance(branch, self.block_type):
+            attr = getattr(branch, self.attribute)
+            if(str(attr) == self.value):
                 self.output_file.write(str(self.stream.name))
-                self.check_property = True
-            # stop recursion
-            return False
-        else:
-            # keep recursing into children
-            return True
-    
+                self.found_property = True
+                return False
+        
+        # keep recursing into children
+        return True    
 
 class SpellCheckTriangles(pyffi.spells.nif.NifSpell):
     """Base class for spells which need to check all triangles."""
