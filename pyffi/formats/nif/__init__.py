@@ -5864,7 +5864,11 @@ class NifFormat(FileFormat):
                 header.caps_1.complex = 1
                 header.caps_1.texture = 1
                 header.caps_1.mipmap = 1
-                pixeldata.set_value(''.join(self.pixel_data_matrix))
+                if self.pixel_data:
+                    # used in older nif versions
+                    pixeldata.set_value(self.pixel_data)
+                else:
+                    pixeldata.set_value(''.join(self.pixel_data_matrix))
             else:
                 raise ValueError(
                     "cannot save pixel format %i as DDS" % self.pixel_format)
