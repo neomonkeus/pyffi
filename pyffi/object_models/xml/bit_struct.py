@@ -47,6 +47,7 @@ import struct
 
 from pyffi.object_models.editable import EditableSpinBox # for Bits
 from pyffi.utils.graph import DetailNode, EdgeFilter
+from pyffi.object_models.xml.basic import BasicBase
 
 class _MetaBitStructBase(type):
     """This metaclass checks for the presence of a _attrs attribute.
@@ -91,7 +92,7 @@ class _MetaBitStructBase(type):
         # precalculate the attribute name list
         cls._names = cls._get_names()
 
-class Bits(DetailNode, EditableSpinBox):
+class Bits(BasicBase, EditableSpinBox):
     """Basic implementation of a n-bit unsigned integer type (without read
     and write)."""
     def __init__(self, numbits = 1, default = 0, parent = None):
