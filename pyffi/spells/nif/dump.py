@@ -464,7 +464,7 @@ class SpellDumpPython(NifSpell):
 
                                 result = True
             return result
-        elif isinstance(_value, pyffi.object_models.xml.basic.BasicBase):
+        elif isinstance(_value, (pyffi.object_models.xml.basic.BasicBase, pyffi.object_models.xml.BitStructAttribute)):
             value = _value.get_value()
             if default is None:
                 default = type(_value)().get_value()
@@ -494,8 +494,26 @@ class SpellDumpPython(NifSpell):
             if not result:
                 self.lines.pop(with_line_number)
             return result
+        elif isinstance(_value, pyffi.object_models.xml.BitStructBase):
+            print("test")
+            
+            with_line_number = len(self.lines)
+            name_alias = "n_%s" % _value.__class__.__name__.lower()
+            self.print_("with ref(%s) as %s:" % (name, name_alias))
+            self.level += 1
+            for attr in _value._get_filtered_attribute_list(data=self.data):
+                attr_name = "%s.%s" % (name_alias, attr.name)
+                _attr_value = getattr(_value, "_%s_value_" % attr.name)
+                if self.print_instance(attr_name, _attr_value, attr.default):
+                    result = True
+            self.level -= 1
+            if not result:
+                self.lines.pop(with_line_number)
+            return result
+            
         else:
-            raise RuntimeError("unknown type %s" % _value.__class__)
+            print("unknown type %s" % _value.__class__)
+            raise RuntimeError()
 
     def dataentry(self):
         self.level = 0
