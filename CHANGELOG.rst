@@ -5,7 +5,6 @@ Release 2.2.3 (Mar 17, 2014)
 
 * Updated to latest nif.xml, submodules moved to github.
 
-
 Release 2.2.2 (Nov 17, 2012)
 ============================
 

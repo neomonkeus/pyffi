@@ -1,12 +1,9 @@
 To continue the PyFFiing discussions, a new thread is needed... not as needed as I thought since there is one still active (when last one got locked a couple weeks ago I was planning on starting a nice brand new one... but doing so anyways. However this thread a tad different... it is bit official (done by a part time PyFFI programmer (that would be me) and with Amorilia's (the head programmer and creator of PyFFI) go ahead), and has a bunch more info that hasn't really been on the radar of modders before.
 
 Quick Links:
-[list][url="http://www.bethsoft.com/bgsforums/index.php?showtopic=1014947"]PyFFI Thread 5[/url]
-[url="http://www.bethsoft.com/bgsforums/index.php?showtopic=976098"]PyFFI thread 4[/url]
-[url="http://www.bethsoft.com/bgsforums/index.php?showtopic=890860"]PyFFI thread 3[/url]
-PyFFI thread 2 - too old and has been purged.
-PyFFI thread 1 - too old and has been purged.
-url="http://pyffi.sourceforge.net/"]PyFFI - [b]Py[/b]thon [b]F[/b]ile [b]F[/b]ormat [b]I[/b]nterface's Documentation[/url] 
+[list]
+[url="http://www.bethsoft.com/bgsforums/index.php?showtopic=1014947"]PyFFI Thread 5[/url]
+[url="http://pyffi.sourceforge.net/"]PyFFI - [b]Py[/b]thon [b]F[/b]ile [b]F[/b]ormat [b]I[/b]nterface's Documentation[/url] 
 [url="http://www.python.org/download/releases/2.6.4/"]Python 2.6.4[/url] (required to Run PyFFI)
 [url="http://sourceforge.net/project/showfiles.php?group_id=199269"]PyFFI's Download page[/url]
 [url="http://sourceforge.net/tracker/?group_id=199269"]PyFFI's Sourceforge Tracker[/url] sub-trackers for bugs, requests etc.

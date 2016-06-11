@@ -8,17 +8,17 @@ Intended Audience :: End Users/Desktop
 Topic :: Multimedia :: Graphics :: 3D Modeling
 Programming Language :: Python
 Programming Language :: Python :: 3
-Programming Language :: Python :: 3.0
-Programming Language :: Python :: 3.1
 Programming Language :: Python :: 3.2
+Programming Language :: Python :: 3.3
+Programming Language :: Python :: 3.4
 Operating System :: OS Independent"""
 #Topic :: Formats and Protocols :: Data Formats
 
 from distutils.core import setup
 import sys
 
-if sys.version_info < (3, 0):
-    raise RuntimeError("PyFFI requires Python 3.0 or higher.")
+if sys.version_info < (3, 2):
+    raise RuntimeError("PyFFI requires Python 3.2 or higher.")
 
 try:
     long_description = open("README.rst").read()
@@ -72,14 +72,15 @@ setup(
         'scripts/patch_recursive_make.py',
         'scripts/patch_recursive_apply.py',
         'scripts/qskope.py'],
-    author = "Amorilia",
-    author_email = "amorilia@users.sourceforge.net",
+    author = ["Amorilia", 
+              "neomonkeus"],
+    author_email = "info@niftools.org",
     license = "BSD",
     keywords = "fileformat nif cgf binary interface stripify",
     platforms = ["any"],
     description = "Processing block structured binary files.",
     classifiers = [_f for _f in classifiers.split("\n") if _f],
     long_description = long_description,
-    url = "http://pyffi.sourceforge.net/",
-    download_url = "http://sourceforge.net/projects/pyffi/files/"
+    url = "http://github.com/niftools/pyffi",
+    download_url = "http://github.com/niftools/pyffi/releases"
 )

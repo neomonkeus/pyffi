@@ -3,6 +3,12 @@ Main author
 
 * Amorilia (amorilia@users.sourceforge.net)
 
+Current Developers
+------------------
+
+* neomonkeus
+* Dexes_TPP
+
 Previous Developers
 -------------------
 

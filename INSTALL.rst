@@ -7,8 +7,7 @@ To run PyFFI's graphical file editor QSkope, you need
 Using the Windows installer
 ===========================
 
-Simply download and run the `Windows installer
-<http://sourceforge.net/project/platformdownload.php?group_id=199269&sel_platform=3089>`_.
+Simply download and run the `Windows installer <http://www.github.com/niftools/pyffi/releases/>`_.
 
 Manual installation
 ===================
@@ -56,8 +55,8 @@ You can uninstall PyFFI manually simply by deleting the :file:`pyffi`
 folder from your Python's :file:`site-packages` folder, which is typically
 at::
 
-  C:\Python25\Lib\site-packages\pyffi
+  C:\Python34\Lib\site-packages\pyffi
 
 or::
 
-  /usr/lib/python2.5/site-packages/pyffi
+  /usr/lib/python3.4/site-packages/pyffi

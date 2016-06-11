@@ -18,7 +18,7 @@ Documentation
    
    intro
    install
-   pyffi
+   api/pyffi
 
    contribute
    authors
