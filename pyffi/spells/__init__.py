@@ -1462,18 +1462,16 @@ may destroy them. Make a backup of your files before running this script.
                         self.write(stream, data)
             self.files_done[stream.name] = spell.reports
 
-        except Exception:
+        except Exception as expt:
+            self.logger.error("Failed with the following error" + str(expt))
             self.files_failed.add(stream.name)
             self.logger.error("TEST FAILED ON %s" % stream.name)
-            self.logger.error(
-                "If you were running a spell that came with PyFFI, then")
-            self.logger.error(
-                "please report this as a bug (include the file) on")
-            self.logger.error(
-                "https://github.com/niftools/pyffi/issues")
+            self.logger.error("If you were running a spell that came with PyFFI, then")
+            self.logger.error("please report this as a bug (include the file) on")
+            self.logger.error("https://github.com/niftools/pyffi/issues")
             # if raising test errors, reraise the exception
             if self.options["raisetesterror"]:
-                raise
+                raise expt
         finally:
             self.msgblockend()
 
