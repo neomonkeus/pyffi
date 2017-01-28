@@ -103,12 +103,8 @@ class Expression(object):
             else:
                 left = data
                 for part in self._left.split("."):
-                    if hasattr(left, 'ARG'):
-                        m = arg_array_pattern.match(part)
-                        if m:
-                            left = getattr(left, 'ARG')[int(m.group(1))]
-                        else:
-                            left = getattr(left, part)
+                    if 'arg' == part:
+                        left = getattr(data, part).to_int(None)
                     else:
                         left = getattr(left, part)
         elif isinstance(self._left, type):
@@ -128,14 +124,12 @@ class Expression(object):
             if (not self._right) or self._right == '""':
                 right = ""
             else:
-                if hasattr(data, 'ARG'):
-                    m = arg_array_pattern.match(self._right)
-                    if m:
-                        right = getattr(data, 'ARG')[int(m.group(1))]
+                right = data
+                for part in self._left.split("."):
+                    if 'arg' == part:
+                        right = getattr(data, part).to_int(None)
                     else:
                         right = getattr(data, self._right)
-                else:
-                    right = getattr(data, self._right)
         elif isinstance(self._right, type):
             right = isinstance(data, self._right)
         elif self._right is None:
