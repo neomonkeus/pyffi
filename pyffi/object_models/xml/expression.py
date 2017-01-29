@@ -81,8 +81,7 @@ class Expression(object):
     """
     operators = set(( '==', '!=', '>=', '<=', '&&', '||', '&', '|', '-', '!',
                   '<', '>', '/', '*', '+' ))
-    arg_array_pattern = re.compile(r'^ARG\[(.)+\]$')
-    
+
     def __init__(self, expr_str, name_filter = None):
         try:
             left, self._op, right = self._partition(expr_str)
