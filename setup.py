@@ -3,8 +3,8 @@
 import os
 import sys
 
-if sys.version_info < (3, 3):
-    raise RuntimeError("PyFFI requires Python 3.3 or higher.")
+if sys.version_info < (3, 5):
+    raise RuntimeError("PyFFI requires Python 3.5 or higher.")
 
 NAME = "PyFFI"
 with open("pyffi/VERSION", "rt") as f:
@@ -58,15 +58,15 @@ PACKAGE_DATA = {'': ['*.xml', '*.xsd', '*.dll', '*.exe'],
                 'pyffi.formats.kfm': ['kfmxml/kfm.xml'],
                 'pyffi': ['VERSION'],
                 }
-SCRIPTS = ['scripts/nif/nifmakehsl.py',
-           'scripts/nif/niftoaster.py',
-           'scripts/cgf/cgftoaster.py',
-           'scripts/kfm/kfmtoaster.py',
-           'scripts/rockstar_pack_dir_img.py',
-           'scripts/rockstar_unpack_dir_img.py',
-           'scripts/patch_recursive_make.py',
-           'scripts/patch_recursive_apply.py',
-           'scripts/qskope.py']
+SCRIPTS = ['install/scripts/nif/nifmakehsl.py',
+           'install/scripts/nif/niftoaster.py',
+           'install/scripts/cgf/cgftoaster.py',
+           'install/scripts/kfm/kfmtoaster.py',
+           'install/scripts/rockstar_pack_dir_img.py',
+           'install/scripts/rockstar_unpack_dir_img.py',
+           'install/scripts/patch_recursive_make.py',
+           'install/scripts/patch_recursive_apply.py',
+           'install/scripts/qskope.py']
 AUTHOR = "Niftools Developers"
 AUTHOR_EMAIL = "info@niftools.org"
 LICENSE = "BSD"
