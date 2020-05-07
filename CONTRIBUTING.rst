@@ -49,7 +49,7 @@ tree to enable your PyFFI to be used by other applications such as for
 instance QSkope, or the Blender NIF Scripts. From within your PyFFI
 git checkout::
 
-  C:\Python25\python.exe setup.py install
+  C:\Python3\python.exe setup.py install
 
 or on linux::
 

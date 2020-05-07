@@ -2,9 +2,11 @@ Main author
 -----------
 
 * Amorilia (amorilia@users.sourceforge.net)
+* neomonkeus
 
 Previous Developers
 -------------------
+
 
 * wz (wz_@users.sourceforge.net)
 
